@@ -1,1 +1,56 @@
+using System;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Write("Enter first number: ");
+            int num1 = 0;
+            while (!int.TryParse(Console.ReadLine(), out num1))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid whole number.");
+            }
+
+            Console.Write("Enter second number: ");
+            int num2 = 0;
+            while (!int.TryParse(Console.ReadLine(), out num2))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid whole number.");
+            }
+
+            string operation;
+
+            while (true)
+            {
+                Console.Write("Choose operation (+,-,*,/,%,=): ");
+                operation = Console.ReadLine();
+
+                if (operation == "+" || operation == "-" || operation == "*" ||
+                    operation == "/" || operation == "%" || operation == "=")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("\nIncorrect Operation Used, please try again\n");
+                }
+            }
+
+            if (operation == "=")
+            {
+                Console.WriteLine("\nProgram terminated.");
+                break;
+            }
+
+            object result = Calculator.Calculate(num1, num2, operation);
+
+            if (result != null)
+            {
+                Console.WriteLine($"\nResult: {result}\n");
+            }
+        }
+    }
+}
 
